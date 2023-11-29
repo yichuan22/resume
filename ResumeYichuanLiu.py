@@ -1,20 +1,24 @@
 import streamlit as st
+import os
 
-# Assuming your resume is in the same directory as your Streamlit app.
-RESUME_PATH = 'Liu_Yichuan_Resume.pdf'
+def main():
+    st.title("PDF Viewer")
 
-# Main app
-st.title("Resume Viewer")
+    # Ensure that the PDF file exists
+    pdf_file = 'Liu_Yichuan_Resume.pdf'
+    if os.path.exists(pdf_file):
+        # Display the PDF
+        with open(pdf_file, "rb") as file:
+            btn = st.download_button(
+                label="Download PDF",
+                data=file,
+                file_name="example.pdf",
+                mime="application/octet-stream"
+            )
+            st.write("PDF Content:")
+            st.components.v1.iframe(src=file.name, width=700, height=1000)
+    else:
+        st.error("File not found: 'example.pdf'")
 
-# Display link to open PDF in new tab
-st.markdown(f'[Open Resume](Liu_Yichuan_Resume.pdf)', unsafe_allow_html=True)
-
-# Download link
-with open(RESUME_PATH, 'rb') as pdf_file:
-    st.download_button(
-        label="Download Resume",
-        data=pdf_file,
-        file_name="Yichuan_Liu_Resume.pdf",
-        mime='application/pdf'
-    )
-
+if __name__ == "__main__":
+    main()
