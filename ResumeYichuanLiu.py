@@ -6,7 +6,7 @@ import tempfile
 def main():
     st.title("PDF Viewer")
 
-    pdf_file = 'example.pdf'
+    pdf_file = 'Liu_Yichuan_Resume.pdf'
 
     if os.path.exists(pdf_file):
         # Display download button
