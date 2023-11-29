@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 def main():
-    st.title("PDF Viewer")
+    st.title("Resume")
 
     # Ensure that the PDF file exists
     pdf_file = 'Liu_Yichuan_Resume.pdf'
