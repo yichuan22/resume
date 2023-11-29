@@ -14,7 +14,7 @@ def main():
             st.download_button(
                 label="Download PDF",
                 data=file,
-                file_name="example.pdf",
+                file_name="Liu_Yichuan_Resume.pdf",
                 mime="application/octet-stream"
             )
 
@@ -26,7 +26,7 @@ def main():
             for page_image in images_from_path:
                 st.image(page_image, use_column_width=True)
     else:
-        st.error("File not found: 'example.pdf'")
+        st.error("File not found: 'Liu_Yichuan_Resume.pdf'")
 
 if __name__ == "__main__":
     main()
