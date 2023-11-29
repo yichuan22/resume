@@ -1,24 +1,32 @@
 import streamlit as st
+from pdf2image import convert_from_path
 import os
+import tempfile
 
 def main():
-    st.title("Resume")
+    st.title("PDF Viewer")
 
-    # Ensure that the PDF file exists
-    pdf_file = 'Liu_Yichuan_Resume.pdf'
+    pdf_file = 'example.pdf'
+
     if os.path.exists(pdf_file):
-        # Display the PDF
+        # Display download button
         with open(pdf_file, "rb") as file:
-            btn = st.download_button(
+            st.download_button(
                 label="Download PDF",
                 data=file,
-                file_name="Liu_Yichuan_Resume.pdf",
+                file_name="example.pdf",
                 mime="application/octet-stream"
             )
-            st.write("PDF Content:")
-            st.components.v1.iframe(src=file.name, width=700, height=1000)
+
+        # Convert PDF to images
+        with tempfile.TemporaryDirectory() as path:
+            images_from_path = convert_from_path(pdf_file, output_folder=path)
+
+            # Display images
+            for page_image in images_from_path:
+                st.image(page_image, use_column_width=True)
     else:
-        st.error("File not found: 'Liu_Yichuan_Resume.pdf'")
+        st.error("File not found: 'example.pdf'")
 
 if __name__ == "__main__":
     main()
